@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Calculate indoor relative humidity based on outdoor temperature and humidity. Uses the accurate Magnus-Tetens formula to determine dew point and comfort levels." />
+    <meta
+      name="author"
+      content="Physics Calculator Tool" />
+    <title>Indoor Humidity Calculator | Free Tool</title>
+    <link
+      rel="stylesheet"
+      href="styles.css" />
+  </head>
+  <body>
+    <a
+      href="#main-calculator"
+      class="skip-link"
+      >Skip to Calculator</a
+    >
+
+    <header role="banner">
+      <div class="header-content">
+        <h1>Indoor Humidity Calculator</h1>
+        <p>Determine indoor comfort based on outdoor weather data.</p>
+      </div>
+      <div class="controls">
+        <!-- Theme Toggle -->
+        <button
+          class="btn-icon"
+          id="theme-toggle"
+          aria-label="Toggle dark mode">
+          <!-- Sun Icon -->
+          <svg
+            class="sun-icon"
+            viewBox="0 0 24 24"
+            style="display: none">
+            <path
+              d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z" />
+          </svg>
+          <!-- Moon Icon -->
+          <svg
+            class="moon-icon"
+            viewBox="0 0 24 24"
+            style="display: none">
+            <path
+              d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z" />
+          </svg>
+        </button>
+
+        <!-- Unit Toggle -->
+        <div
+          class="unit-toggle"
+          role="radiogroup"
+          aria-label="Temperature Unit">
+          <button
+            id="btn-celsius"
+            role="radio"
+            aria-checked="true"
+            >°C</button
+          >
+          <button
+            id="btn-fahrenheit"
+            role="radio"
+            aria-checked="false"
+            >°F</button
+          >
+        </div>
+      </div>
+    </header>
+
+    <main id="main-calculator">
+      <form
+        id="calc-form"
+        aria-label="Humidity Calculation Form"
+        novalidate>
+        <div class="form-group">
+          <label for="outdoor-temp">Outdoor Temperature</label>
+          <div class="input-wrapper">
+            <input
+              type="number"
+              id="outdoor-temp"
+              name="outdoor-temp"
+              placeholder="e.g. 5"
+              required
+              step="0.1"
+              min="-50"
+              max="60" />
+            <span
+              class="suffix"
+              id="suffix-out"
+              aria-hidden="true"
+              >°C</span
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="outdoor-hum">Outdoor Relative Humidity</label>
+          <div class="input-wrapper">
+            <input
+              type="number"
+              id="outdoor-hum"
+              name="outdoor-hum"
+              placeholder="e.g. 80"
+              required
+              min="0"
+              max="100"
+              step="1" />
+            <span class="suffix">%</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="indoor-temp">Indoor Temperature</label>
+          <div class="input-wrapper">
+            <input
+              type="number"
+              id="indoor-temp"
+              name="indoor-temp"
+              placeholder="e.g. 21"
+              required
+              step="0.1"
+              min="0"
+              max="50" />
+            <span
+              class="suffix"
+              id="suffix-in"
+              aria-hidden="true"
+              >°C</span
+            >
+          </div>
+        </div>
+
+        <button type="submit">Calculate Indoor Humidity</button>
+      </form>
+
+      <!-- Live Region for Accessibility -->
+      <div
+        id="result-region"
+        role="region"
+        aria-live="polite"
+        aria-atomic="true">
+        <div class="result-header">
+          <div
+            class="result-value"
+            id="display-humidity"
+            >--%</div
+          >
+          <div class="result-label">Indoor Relative Humidity</div>
+        </div>
+
+        <div class="gauge-wrapper">
+          <div class="gauge-labels">
+            <span>Too Dry</span>
+            <span>Comfort Zone</span>
+            <span>Humid</span>
+          </div>
+          <div class="gauge-track">
+            <div
+              class="gauge-thumb"
+              id="gauge-thumb"
+              style="left: 0%"></div>
+          </div>
+          <div
+            class="status-msg"
+            id="status-message"></div>
+        </div>
+
+        <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted); margin-top: 20px">
+          Calculated Dew Point: <strong id="display-dewpoint">--</strong> <span id="suffix-dp">°C</span>
+        </p>
+      </div>
+    </main>
+
+    <section
+      class="examples-section"
+      aria-labelledby="examples-heading">
+      <h2 id="examples-heading">Example Calculations</h2>
+      <div class="example-grid">
+        <article class="example-card">
+          <h3>❄️ Cold Winter Day</h3>
+          <div class="data-row">
+            <span class="data-label">Outdoor Temp:</span>
+            <span class="data-val">0°C (32°F)</span>
+          </div>
+          <div class="data-row">
+            <span class="data-label">Outdoor Humidity:</span>
+            <span class="data-val">80%</span>
+          </div>
+          <div class="data-row">
+            <span class="data-label">Indoor Temp:</span>
+            <span class="data-val">22°C (72°F)</span>
+          </div>
+          <div class="example-outcome">
+            <p style="color: var(--danger)">Result: ~23% (Very Dry)</p>
+            <small style="color: var(--text-muted)">Heating cold air drastically reduces relative humidity.</small>
+          </div>
+        </article>
+
+        <article class="example-card">
+          <h3>☀️ Hot Summer Day</h3>
+          <div class="data-row">
+            <span class="data-label">Outdoor Temp:</span>
+            <span class="data-val">30°C (86°F)</span>
+          </div>
+          <div class="data-row">
+            <span class="data-label">Outdoor Humidity:</span>
+            <span class="data-val">70%</span>
+          </div>
+          <div class="data-row">
+            <span class="data-label">Indoor Temp:</span>
+            <span class="data-val">22°C (72°F)</span>
+          </div>
+          <div class="example-outcome">
+            <p style="color: var(--primary)">Result: ~100% (Condensation)</p>
+            <small style="color: var(--text-muted)">Cooling humid air increases relative humidity to saturation.</small>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer role="contentinfo">
+      <p>Calculations based on the Magnus-Tetens approximation for saturation vapor pressure.</p>
+      <p>&copy; <span id="year"></span> Indoor Humidity Tool.</p>
+    </footer>
+
+    <script
+      type="module"
+      src="./scripts/main.js"></script>
+  </body>
+</html>
