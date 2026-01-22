@@ -10,22 +10,22 @@ html {
 :root {
   /* Light Theme Variables (Default) */
   --bg-body: hsl(60, 22%, 84%);
-  --bg-card: #ffffff;
-  --text-main: #1e293b;
-  --text-muted: #64748b;
-  --border-color: #e2e8f0;
-  --input-bg: #ffffff;
-  --input-text: #1e293b;
+  --bg-card: hsl(0, 0%, 100%);
+  --text-main: hsl(217, 33%, 17%);
+  --text-muted: hsl(215, 16%, 47%);
+  --border-color: hsl(214, 32%, 91%);
+  --input-bg: hsl(0, 0%, 100%);
+  --input-text: hsl(217, 33%, 17%);
   --primary: hsl(166, 83%, 53%);
   --primary-hover: hsl(176, 76%, 48%);
-  --primary-light: #eff6ff;
+  --primary-light: hsl(214, 100%, 97%);
   --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --focus-ring: 0 0 0 3px rgba(37, 99, 235, 0.5);
+  --focus-ring: 0 0 0 3px hsla(181, 83%, 53%, 0.5);
 
   /* Status Colors */
-  --success: #10b981;
-  --warning: #f59e0b;
-  --danger: #ef4444;
+  --success: hsl(160, 84%, 39%);
+  --warning: hsl(38, 92%, 50%);
+  --danger: hsl(0, 84%, 60%);
 }
 
 /* Dark Theme Override */
@@ -37,13 +37,7 @@ html {
   --border-color: #334155;
   --input-bg: #0f172a;
   --input-text: #f1f5f9;
-  --primary: #3b82f6;
-  --primary-hover: #60a5fa;
-  --primary-light: #1e3a8a;
-  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.5);
-  --focus-ring: 0 0 0 3px rgba(59, 130, 246, 0.5);
-}
-
+X
 /* Global Reset & Base Styles */
 * {
   box-sizing: border-box;
@@ -123,6 +117,7 @@ header {
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s;
+  box-sizing: border-box;
 }
 
 .btn-icon:hover {
@@ -169,7 +164,10 @@ main {
   max-width: 500px;
   padding: 30px;
   border: 1px solid var(--border-color);
+  box-sizing: border-box;
 }
+
+/* -------------------- form --------------------- */
 
 form {
   margin-bottom: 20px;
@@ -194,7 +192,7 @@ label {
   align-items: center;
 }
 
-input[type='number'] {
+input[type='number'], input[type='text'], input[type='email'], textarea {
   width: 100%;
   padding: 12px 15px;
   background-color: var(--input-bg);
@@ -203,6 +201,7 @@ input[type='number'] {
   font-size: 1.1rem;
   color: var(--input-text);
   transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
 }
 
 input[type='number']:focus {
@@ -322,6 +321,7 @@ button[type='submit']:active {
   transform: translateX(-50%);
   transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
 }
 
 /* Dark mode specific gauge thumb fix */
@@ -398,6 +398,13 @@ article.example-card h3 {
   text-align: center;
 }
 
+/* Contact Form Section */
+#contact-form-sec{
+  margin-top: 2rem;
+  padding: 1rem;
+  background: var(--bg-card);
+}
+
 /* Footer */
 footer {
   margin-top: auto;
@@ -417,4 +424,11 @@ footer {
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   border: 0;
+}
+
+
+.geo-info {
+  font-size: 12px;
+  color: gray;
+  display: block;
 }
