@@ -1,7 +1,6 @@
 [build]
  publish="/public"
 
-
 [[edge_functions]]
- path = "/hello"
- function="hello"
+ path = "/"
+ function="transform-func"
