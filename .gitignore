@@ -481,3 +481,7 @@ pyrightconfig.json
 n
 # Local Netlify folder
 .netlify
+
+# scratch files 
+
+scratch.*
