@@ -17,12 +17,6 @@
       href="./styles.css" />
   </head>
   <body>
-    <a
-      href="#main-calculator"
-      class="skip-link"
-      >Skip to Calculator</a
-    >
-
     <header role="banner">
       <div class="header-content">
         <h1>Indoor Humidity Calculator</h1>
@@ -70,6 +64,7 @@
             >°F</button
           >
         </div>
+        <p class="geo-info">LOCATION_UNKNOWN</p>
       </div>
     </header>
 
@@ -224,9 +219,67 @@
       </div>
     </section>
 
+    <section id="contact-form-sec">
+      <h2 class="">Contact Form</h2>
+      <form
+        name="humidity-calc-contact-form"
+        method="POST"
+        netlify-honeypot="bot-field"
+        data-netlify-recaptcha="true"
+        data-netlify="true">
+        <p class="visually-hidden">
+          <label>
+            Don’t fill this out if you’re human:
+            <input
+              name="bot-field"
+              type="text" />
+          </label>
+        </p>
+        <div class="form-group">
+          <label for="name">Your Name:</label>
+          <input
+            id="name"
+            type="text"
+            name="name"
+            placeholder="e.g. Abc Xyz" />
+        </div>
+        <div class="form-group">
+          <label for="email">Your Email:</label>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            placeholder="e.g contact_me@email.com" />
+        </div>
+        <div class="form-group">
+          <label for="role">Your Role:</label>
+          <select
+            id="role"
+            name="role[]"
+            multiple>
+            <option value="leader">Leader</option>
+            <option value="follower">Follower</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Message:</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="5"></textarea>
+        </div>
+
+        <div data-netlify-recaptcha="true"></div>
+
+        <div class="form-group">
+          <button type="submit">Send</button>
+        </p>
+      </form>
+    </section>
+
     <footer role="contentinfo">
       <p>Calculations based on the Magnus-Tetens approximation for saturation vapor pressure.</p>
-      <p>&copy; <span id="year"></span> Indoor Humidity Tool.</p>
+      <p>&copy; <span id="year"></span> Indoor Humidity Tool MDesigns.</p>
     </footer>
 
     <script
