@@ -17,7 +17,7 @@ html {
   --border-color: hsl(214, 32%, 91%);
   --input-bg: hsl(0, 0%, 100%);
   --input-text: hsl(217, 33%, 17%);
-  --primary: hsl(166, 83%, 53%);
+  --primary: hsl(166, 63%, 33%);
   --primary-hover: hsl(176, 76%, 48%);
   --primary-light: hsl(214, 100%, 97%);
   --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
@@ -31,13 +31,13 @@ html {
 
 /* Dark Theme Override */
 [data-theme='dark'] {
-  --bg-body: #0f172a;
-  --bg-card: #1e293b;
-  --text-main: #f1f5f9;
-  --text-muted: #94a3b8;
-  --border-color: #334155;
-  --input-bg: #0f172a;
-  --input-text: #f1f5f9;
+  --bg-body: hsl(222, 47%, 11%);
+  --bg-card: hsl(217, 33%, 17%);
+  --text-main: hsl(210, 40%, 96%);
+  --text-muted: hsl(215, 20%, 65%);
+  --border-color: hsl(215, 25%, 27%);
+  --input-bg: hsl(222, 47%, 11%);
+  --input-text: hsl(210, 40%, 96%);
 }
 /* Global Reset & Base Styles */
 * {
@@ -58,23 +58,6 @@ body {
   gap: 10vh;
   flex-direction: column;
   align-items: center;
-}
-
-/* Accessibility Skip Link */
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 0;
-  background: var(--primary);
-  color: white;
-  padding: 8px;
-  z-index: 100;
-  transition: top 0.2s;
-  text-decoration: none;
-  font-weight: bold;
-}
-.skip-link:focus {
-  top: 0;
 }
 
 /* Header & Nav */
@@ -163,8 +146,8 @@ main {
   border-radius: 16px;
   box-shadow: var(--shadow);
   width: 100%;
-  max-width: 500px;
-  padding: 30px;
+  max-width: 650px;
+  padding: clamp(5px, 1.5rem, 30px);
   border: 1px solid var(--border-color);
   box-sizing: border-box;
 }
@@ -197,6 +180,7 @@ label {
 input[type='number'],
 input[type='text'],
 input[type='email'],
+select,
 textarea {
   width: 100%;
   padding: 12px 15px;
@@ -209,10 +193,14 @@ textarea {
   box-sizing: border-box;
 }
 
-input[type='number']:focus {
+input:focus {
   outline: none;
   border-color: var(--primary);
   box-shadow: var(--focus-ring);
+}
+
+select > option {
+  color: var(--input-text);
 }
 
 .suffix {
@@ -228,7 +216,7 @@ button[type='submit'] {
   width: 100%;
   padding: 14px;
   background-color: var(--primary);
-  color: white;
+  color: hsl(0, 0%, 100%);
   border: none;
   border-radius: 8px;
   font-size: 1rem;
@@ -236,6 +224,7 @@ button[type='submit'] {
   cursor: pointer;
   transition: background-color 0.2s, transform 0.1s;
   margin-top: 10px;
+  text-transform: uppercase;
 }
 
 button[type='submit']:hover {
@@ -320,18 +309,18 @@ button[type='submit']:active {
   top: -5px;
   width: 6px;
   height: 22px;
-  background-color: #000;
+  background-color: hsl(0, 0%, 0%);
   border: 2px solid var(--bg-card);
   border-radius: 4px;
   transform: translateX(-50%);
   transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 4px hsla(0, 0%, 0%, 0.3);
   box-sizing: border-box;
 }
 
 /* Dark mode specific gauge thumb fix */
 [data-theme='dark'] .gauge-thumb {
-  background-color: #fff;
+  background-color: hsl(0, 0%, 100%);
   border-color: var(--bg-card);
 }
 
@@ -409,6 +398,9 @@ article.example-card h3 {
   margin-top: 2rem;
   padding: 1rem;
   background: var(--bg-card);
+  width: 100%;
+  max-width: 650px;
+  box-sizing: border-box;
 }
 
 /* Footer */
@@ -434,7 +426,6 @@ footer {
 
 .geo-info {
   font-size: 12px;
-  color: gray;
+  color: var(--text-muted);
   display: block;
 }
-      
