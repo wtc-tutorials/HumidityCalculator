@@ -7,6 +7,7 @@
 html {
   scroll-behavior: smooth;
 }
+
 :root {
   /* Light Theme Variables (Default) */
   --bg-body: hsl(60, 22%, 84%);
@@ -37,7 +38,7 @@ html {
   --border-color: #334155;
   --input-bg: #0f172a;
   --input-text: #f1f5f9;
-X
+}
 /* Global Reset & Base Styles */
 * {
   box-sizing: border-box;
@@ -54,6 +55,7 @@ body {
   padding: 20px;
   min-height: 100vh;
   display: flex;
+  gap: 10vh;
   flex-direction: column;
   align-items: center;
 }
@@ -192,7 +194,10 @@ label {
   align-items: center;
 }
 
-input[type='number'], input[type='text'], input[type='email'], textarea {
+input[type='number'],
+input[type='text'],
+input[type='email'],
+textarea {
   width: 100%;
   padding: 12px 15px;
   background-color: var(--input-bg);
@@ -385,6 +390,7 @@ article.example-card h3 {
 .data-label {
   color: var(--text-muted);
 }
+
 .data-val {
   font-weight: 600;
   color: var(--text-main);
@@ -399,7 +405,7 @@ article.example-card h3 {
 }
 
 /* Contact Form Section */
-#contact-form-sec{
+#contact-form-sec {
   margin-top: 2rem;
   padding: 1rem;
   background: var(--bg-card);
@@ -426,9 +432,9 @@ footer {
   border: 0;
 }
 
-
 .geo-info {
   font-size: 12px;
   color: gray;
   display: block;
 }
+      
